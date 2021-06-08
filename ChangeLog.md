@@ -1,0 +1,6 @@
+MeiliSearch ChangeLog
+=====================
+
+## ?.?.? / ????-??-??
+
+* Initial release (@thekid)
