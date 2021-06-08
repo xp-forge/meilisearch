@@ -14,6 +14,7 @@ Example
 -------
 ```php
 use com\meilisearch\MeiliSearch;
+use util\cmd\Console;
 
 $search= new MeiliSearch('http://localhost:7700');
 
@@ -21,7 +22,7 @@ $search= new MeiliSearch('http://localhost:7700');
 $result= $search->locate('content')->search($term);
 
 // Output results
-Console::writeLine('Found %d hits for "%s" in %.3f seconds', $result->hits(), $term, $result->elapsedTime());
+Console::writeLine('%d hits for "%s" in %.3f seconds', $result->hits(), $term, $result->elapsedTime());
 foreach ($result as $document) {
   Console::writeLine('- ', $document);
 }
