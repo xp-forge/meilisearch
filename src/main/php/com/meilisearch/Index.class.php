@@ -32,7 +32,6 @@ class Index implements Value {
   private function meta() {
     return $this->meta ?? $this->meta= $this->endpoint->resource('indexes/{0}', [$this->uid])
       ->get()
-      ->result()
       ->optional()
     ;
   }
@@ -123,7 +122,6 @@ class Index implements Value {
   public function document($id) {
     return $this->endpoint->resource('indexes/{0}/documents/{1}', [$this->uid, $id])
       ->get()
-      ->result()
       ->optional()
     ;
   }
@@ -138,7 +136,6 @@ class Index implements Value {
   public function add(array... $documents) {
     return $this->endpoint->resource('indexes/{0}/documents', [$this->uid])
       ->post($documents, 'application/json')
-      ->result()
       ->match([202 => function($r) { return $r->value(); }])
     ;
   }
@@ -153,7 +150,6 @@ class Index implements Value {
   public function update(array... $documents) {
     return $this->endpoint->resource('indexes/{0}/documents', [$this->uid])
       ->put($documents, 'application/json')
-      ->result()
       ->match([202 => function($r) { return $r->value(); }])
     ;
   }
@@ -169,7 +165,6 @@ class Index implements Value {
   public function remove(... $ids) {
     return $this->endpoint->resource('indexes/{0}/documents/delete-batch', [$this->uid])
       ->post($ids, 'application/json')
-      ->result()
       ->match([202 => function($r) { return $r->value(); }])
     ;
   }
@@ -184,7 +179,6 @@ class Index implements Value {
   public function clear() {
     return $this->endpoint->resource('indexes/{0}/documents', [$this->uid])
       ->delete()
-      ->result()
       ->match([202 => function($r) { return $r->value(); }])
     ;
   }
@@ -199,7 +193,6 @@ class Index implements Value {
   public function delete() {
     $this->endpoint->resource('indexes/{0}', [$this->uid])
       ->delete()
-      ->result()
       ->match([204 => true])
     ;
 
@@ -218,7 +211,6 @@ class Index implements Value {
   public function modify(array $meta) {
     $this->meta= $this->endpoint->resource('indexes/{0}', [$this->uid])
       ->put($meta, 'application/json')
-      ->result()
       ->value()
     ;
   }
@@ -233,7 +225,6 @@ class Index implements Value {
   public function settings() {
     return $this->endpoint->resource('indexes/{0}/settings', [$this->uid])
       ->get()
-      ->result()
       ->value()
     ;
   }
@@ -249,7 +240,6 @@ class Index implements Value {
   public function configure($settings) {
     return $this->endpoint->resource('indexes/{0}/settings', [$this->uid])
       ->post($settings, 'application/json')
-      ->result()
       ->match([202 => function($r) { return $r->value(); }])
     ;
   }
@@ -264,7 +254,6 @@ class Index implements Value {
   public function reset() {
     return $this->endpoint->resource('indexes/{0}/settings', [$this->uid])
       ->delete()
-      ->result()
       ->match([202 => function($r) { return $r->value(); }])
     ;
   }
@@ -279,7 +268,6 @@ class Index implements Value {
   public function stats() {
     return $this->endpoint->resource('indexes/{0}/stats', [$this->uid])
       ->get()
-      ->result()
       ->value()
     ;
   }

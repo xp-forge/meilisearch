@@ -20,7 +20,6 @@ class Search implements \IteratorAggregate {
   public function result() {
     return $this->result ?? $this->result= $this->index->resource('search')
       ->post($this->parameters, 'application/json')
-      ->result()
       ->value()
     ;
   }
@@ -78,7 +77,7 @@ class Search implements \IteratorAggregate {
     $parameters= ['offset' => 0, 'limit' => $slice] + $this->parameters;
 
     do {
-      $this->result ?? $this->result= $resource->post($parameters, 'application/json')->result()->value();
+      $this->result ?? $this->result= $resource->post($parameters, 'application/json')->value();
       $parameters['offset']= $this->result['offset'] + $this->result['limit'];
       $total= $this->result['nbHits'];
 

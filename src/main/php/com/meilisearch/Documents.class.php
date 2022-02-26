@@ -7,11 +7,7 @@ class Documents implements \IteratorAggregate {
 
   /** @return iterable */
   public function getIterator() {
-    yield from $this->index->resource('documents')
-      ->get($this->parameters)
-      ->result()
-      ->value()
-    ;
+    yield from $this->index->resource('documents')->get($this->parameters)->value();
   }
 
   /**
@@ -25,7 +21,7 @@ class Documents implements \IteratorAggregate {
     $offset= 0;
 
     do {
-      $r= $resource->get(['offset' => $offset, 'limit' => $slice])->result();
+      $r= $resource->get(['offset' => $offset, 'limit' => $slice]);
       $i= 0;
       foreach ($r->value() as $document) {
         yield $document;

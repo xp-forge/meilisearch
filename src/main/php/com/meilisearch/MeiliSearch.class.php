@@ -65,7 +65,6 @@ class MeiliSearch {
   public function index(string $uid): Index {
     return new Index($this->endpoint, $this->endpoint->resource('indexes/{0}', [$uid])
       ->get()
-      ->result()
       ->value()
     );
   }
@@ -80,7 +79,6 @@ class MeiliSearch {
   public function create(string $uid, string $primaryKey= null): Index {
     return new Index($this->endpoint, $this->endpoint->resource('indexes')
       ->post(['uid' => $uid, 'primaryKey' => $primaryKey], 'application/json')
-      ->result()
       ->match([201 => function($r) { return $r->value(); }])
     );
   }
@@ -94,7 +92,6 @@ class MeiliSearch {
   public function indexes(): Indexes {
     return new Indexes($this->endpoint, $this->endpoint->resource('indexes')
       ->get()
-      ->result()
       ->value()
     );
   }
@@ -107,7 +104,7 @@ class MeiliSearch {
    * @throws webservices.rest.UnexpectedStatus
    */
   public function stats() {
-    return $this->endpoint->resource('stats')->get()->result()->value();
+    return $this->endpoint->resource('stats')->get()->value();
   }
 
   /**
@@ -118,7 +115,7 @@ class MeiliSearch {
    * @throws webservices.rest.UnexpectedStatus
    */
   public function version() {
-    return $this->endpoint->resource('version')->get()->result()->value();
+    return $this->endpoint->resource('version')->get()->value();
   }
 
   /**
@@ -129,6 +126,6 @@ class MeiliSearch {
    * @throws webservices.rest.UnexpectedStatus
    */
   public function health() {
-    return $this->endpoint->resource('health')->get()->result()->value();
+    return $this->endpoint->resource('health')->get()->value();
   }
 }
