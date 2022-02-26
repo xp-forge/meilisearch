@@ -1,8 +1,9 @@
 <?php namespace com\meilisearch;
 
+use IteratorAggregate, Traversable;
 use webservices\rest\Endpoint;
 
-class Indexes implements \IteratorAggregate {
+class Indexes implements IteratorAggregate {
   private $endpoint, $result;
 
   /**
@@ -28,7 +29,7 @@ class Indexes implements \IteratorAggregate {
   }
 
   /** @return iterable */
-  public function getIterator() {
+  public function getIterator(): Traversable {
     foreach ($this->result as $meta) {
       yield $meta['uid'] => new Index($this->endpoint, $meta);
     }

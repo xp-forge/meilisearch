@@ -1,6 +1,8 @@
 <?php namespace com\meilisearch;
 
-class Search implements \IteratorAggregate {
+use IteratorAggregate, Traversable;
+
+class Search implements IteratorAggregate {
   use Iteration;
 
   private $result= null;
@@ -40,7 +42,7 @@ class Search implements \IteratorAggregate {
   public function elapsedTime(): float { return $this->result()['processingTimeMs'] / 1000; }
 
   /** @return iterable */
-  public function getIterator() { yield from $this->result()['hits']; }
+  public function getIterator(): Traversable { yield from $this->result()['hits']; }
 
   /**
    * Returns the previous offset or NULL

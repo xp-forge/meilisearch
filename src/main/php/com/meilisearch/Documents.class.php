@@ -1,12 +1,14 @@
 <?php namespace com\meilisearch;
 
-class Documents implements \IteratorAggregate {
+use IteratorAggregate, Traversable;
+
+class Documents implements IteratorAggregate {
   use Iteration;
 
   public function __construct(Index $index) { $this->index= $index; }
 
   /** @return iterable */
-  public function getIterator() {
+  public function getIterator(): Traversable {
     yield from $this->index->resource('documents')->get($this->parameters)->value();
   }
 
