@@ -31,7 +31,7 @@ class MeiliSearch {
       throw new IllegalArgumentException('DSN must consist at least of scheme and host');
     }
 
-    $this->endpoint= new Endpoint($p['scheme'].'://'.$p['host'].(isset($p['port']) ? ':'.$p['port'] : ''));
+    $this->endpoint= new Endpoint($p['scheme'].'://'.$p['host'].(isset($p['port']) ? ':'.$p['port'] : ''), null, []);
     if (isset($p['user'])) {
       $this->endpoint->with([self::API_KEY => $p['user']]);
     }
