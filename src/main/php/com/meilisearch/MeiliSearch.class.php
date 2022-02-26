@@ -14,6 +14,8 @@ use webservices\rest\Endpoint;
 class MeiliSearch {
   const API_KEY = 'X-Meili-API-Key';
 
+  private $endpoint;
+
   /**
    * Instantiate search client using a given URI in the form of
    * `https?://[{api-key}@]{host}[:{port}]`. If the port is omitted,
