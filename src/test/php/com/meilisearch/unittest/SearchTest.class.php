@@ -1,7 +1,7 @@
 <?php namespace com\meilisearch\unittest;
 
-use com\meilisearch\{MeiliSearch, Index};
-use unittest\{Assert, Expect, Test, Values};
+use com\meilisearch\{Index, MeiliSearch};
+use test\{Assert, Expect, Test, Values};
 
 class SearchTest {
   const JSON= ['Content-Type' => 'application/json'];
@@ -127,12 +127,12 @@ class SearchTest {
     Assert::equals(0.035, $this->index()->search()->elapsedTime());
   }
 
-  #[Test, Values(map: ['test' => 'test', '' => '', null => ''])]
+  #[Test, Values([['test', 'test'], ['', ''], [null, '']])]
   public function yields_given_query($term, $expected) {
     Assert::equals($expected, $this->index()->search($term)->query());
   }
 
-  #[Test, Values(map: ['test' => 6100, 'ok' => 6101, '6102' => 6102])]
+  #[Test, Values([['test', 6100], ['ok', 6101], ['6102', 6102]])]
   public function search_for($term, $expected) {
     Assert::equals(
       [self::DOCUMENTS[$expected]],

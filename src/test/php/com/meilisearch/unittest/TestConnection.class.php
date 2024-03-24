@@ -44,7 +44,7 @@ class TestConnection extends HttpConnection {
       $h.= 'Content-Length: '.strlen($body)."\r\n";
     }
 
-    return new HttpResponse(new MemoryInputStream("HTTP/1.1 ${status}\r\n${h}\r\n${body}"));
+    return new HttpResponse(new MemoryInputStream("HTTP/1.1 {$status}\r\n{$h}\r\n{$body}"));
   }
 
   public function open(HttpRequest $request) {

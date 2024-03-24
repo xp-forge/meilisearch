@@ -42,7 +42,7 @@ trait Iteration {
    * @param  ?string $field
    * @return [:[:var]]
    */
-  public function toMap(string $field= null) {
+  public function toMap($field= null) {
     $field ?? $field= $this->index->primaryKey();
     $r= [];
     foreach ($this->getIterator() as $document) {

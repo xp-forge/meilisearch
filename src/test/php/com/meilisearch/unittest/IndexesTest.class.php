@@ -1,8 +1,8 @@
 <?php namespace com\meilisearch\unittest;
 
-use com\meilisearch\{MeiliSearch, Index};
+use com\meilisearch\{Index, MeiliSearch};
 use lang\{IllegalStateException, IndexOutOfBoundsException};
-use unittest\{Assert, Expect, Test, Values};
+use test\{Assert, Expect, Test, Values};
 use util\Date;
 use webservices\rest\UnexpectedStatus;
 
@@ -250,7 +250,7 @@ class IndexesTest {
     Assert::equals('test', $this->search()->locate('test')->uid());
   }
 
-  #[Test, Values(map: ['test' => 'id', 'content' => null])]
+  #[Test, Values([['test', 'id'], ['content', null]])]
   public function primaryKey($index, $expected) {
     Assert::equals($expected, $this->search()->index($index)->primaryKey());
   }
@@ -296,7 +296,7 @@ class IndexesTest {
     Assert::equals('test', $this->search()->locate('test')->name());
   }
 
-  #[Test, Expect(class: IllegalStateException::class, withMessage: 'Index suggest does not exist')]
+  #[Test, Expect(class: IllegalStateException::class, message: 'Index suggest does not exist')]
   public function accessing_name_on_non_existant_index() {
     $this->search()->locate('suggest')->name();
   }

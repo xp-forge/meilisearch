@@ -72,11 +72,13 @@ class MeiliSearch {
   /**
    * Creates a new index with a given UID, raising an exception if it already exists.
    *
+   * @param  string $uid
+   * @param  ?string $primaryKey
    * @see    https://docs.meilisearch.com/reference/api/indexes.html#create-an-index
    * @see    https://docs.meilisearch.com/learn/core_concepts/documents.html#primary-field
    * @throws webservices.rest.UnexpectedStatus
    */
-  public function create(string $uid, string $primaryKey= null): Index {
+  public function create(string $uid, $primaryKey= null): Index {
     return new Index($this->endpoint, $this->endpoint->resource('indexes')
       ->post(['uid' => $uid, 'primaryKey' => $primaryKey], 'application/json')
       ->match([201 => function($r) { return $r->value(); }])

@@ -3,4 +3,5 @@ MeiliSearch ChangeLog
 
 ## ?.?.? / ????-??-??
 
-* Initial release (@thekid)
+* Converted to new testing library - @thekid
+* Initial release - @thekid

@@ -1,7 +1,7 @@
 <?php namespace com\meilisearch\unittest;
 
-use com\meilisearch\{MeiliSearch, Index};
-use unittest\{Assert, Expect, Test, Values};
+use com\meilisearch\{Index, MeiliSearch};
+use test\{Assert, Expect, Test, Values};
 use webservices\rest\UnexpectedStatus;
 
 class DocumentsTest {

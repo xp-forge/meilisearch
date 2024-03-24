@@ -2,7 +2,7 @@
 
 use com\meilisearch\MeiliSearch;
 use lang\IllegalArgumentException;
-use unittest\{Assert, Test, Expect, Values};
+use test\{Assert, Expect, Test, Values};
 use util\URI;
 use webservices\rest\UnexpectedStatus;
 
