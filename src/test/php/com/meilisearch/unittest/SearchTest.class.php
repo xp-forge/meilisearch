@@ -127,7 +127,7 @@ class SearchTest {
     Assert::equals(0.035, $this->index()->search()->elapsedTime());
   }
 
-  #[Test, Values([['test', 'test'], ['', ''], [null, '']])]
+  #[Test, Values([['test', 'test'], ['', '']])]
   public function yields_given_query($term, $expected) {
     Assert::equals($expected, $this->index()->search($term)->query());
   }

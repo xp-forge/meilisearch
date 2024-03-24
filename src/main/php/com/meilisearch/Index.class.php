@@ -96,8 +96,8 @@ class Index implements Value {
    * 
    * @see    https://docs.meilisearch.com/reference/api/search.html
    */
-  public function search(string $query= null, array $parameters= []): Search {
-    return new Search($this, ['q' => (string)$query] + $parameters);
+  public function search(string $query= '', array $parameters= []): Search {
+    return new Search($this, ['q' => $query] + $parameters);
   }
 
   /**
